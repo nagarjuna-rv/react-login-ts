@@ -1,6 +1,7 @@
 import { Button, Paper, Typography } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useActions } from '../../hooks/useActions';
 import { FormInputText } from '../FormElements/FormInputText';
 
 interface Props {
@@ -18,7 +19,11 @@ const defaultValues = {
 const Login: React.FC<Props> = ({ setIsAuth }) => {
     const methods = useForm<IFormInput>({ defaultValues: defaultValues });
     const { handleSubmit, control, register } = methods;
-    const onSubmit = (data: IFormInput) => console.log(data);
+    const { seachRepositories } = useActions();
+    const onSubmit = (data: IFormInput) => {
+        console.log(data);
+        seachRepositories("react");
+    }
     return (<>
         <Typography style={{ margin: "10px 25%" }} variant='h3' color={"#12aaa2"}>Throttle Management System</Typography>
         <Paper elevation={0}
